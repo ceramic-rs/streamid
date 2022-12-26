@@ -4,7 +4,7 @@ use cid::{
     multihash::{Code, MultihashDigest},
     Cid,
 };
-use dag_cbor::{Codec, DagCborCodec};
+use libipld::{cbor::DagCborCodec, prelude::*};
 use unsigned_varint::encode as varint;
 
 use crate::{util, *};
@@ -57,9 +57,11 @@ impl StreamId {
     /// let _stream_id = StreamId::from_genesis(StreamType::Tile, &genesis);
     /// ```
     pub fn from_genesis(stream_type: StreamType, genesis: &Ipld) -> Result<Self> {
-        let bytes = DagCborCodec::encode(genesis)?;
+        let bytes: Vec<u8> = DagCborCodec
+            .encode(genesis)
+            .map_err(|err| Error::CborEncoding(err.to_string()))?;
         let hash = Code::Sha2_256.digest(&bytes);
-        let cid = Cid::new_v1(DagCborCodec::CODEC.into(), hash);
+        let cid = Cid::new_v1(DagCborCodec.into(), hash);
         Ok(StreamId { stream_type, cid })
     }
 

@@ -36,8 +36,8 @@ pub enum Error {
     #[error("Unknown CID version {0}")]
     UnknownCidVersion(u64),
 
-    #[error(transparent)]
-    Cbor(#[from] dag_cbor::CborError),
+    #[error("CBOR encoding error: {0}")]
+    CborEncoding(String),
 
     #[error(transparent)]
     Cid(#[from] cid::Error),

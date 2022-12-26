@@ -1,6 +1,6 @@
 [package]
 name = "streamid"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "Ceramic StreamID"
 documentation = "https://docs.rs/streamid/"
@@ -12,8 +12,7 @@ keywords = ["ceramic", "cid", "commitid", "streamid"]
 
 [dependencies]
 cid = "0.10.0"
-dag-cbor = "0.1.0"
-libipld-base = "0.1.0"
+libipld = "0.15.0"
 num_enum = "0.5.7"
 once_cell = "1.16.0"
 regex = "1.7.0"

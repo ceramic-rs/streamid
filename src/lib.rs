@@ -8,7 +8,7 @@ mod stream_type;
 mod util;
 
 pub use cid::Cid;
-pub use libipld_base::ipld::Ipld;
+pub use libipld::Ipld;
 
 pub use commit_id::*;
 pub use result::*;
